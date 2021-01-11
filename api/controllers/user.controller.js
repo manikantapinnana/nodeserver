@@ -44,7 +44,7 @@ const register = (req, res) => {
 const login = (req, res) => {
     var username = req.body.username;
     var password = crypto.createHash('sha256').update(req.body.password).digest('hex');
-    User.findOne({ $or: [{ email: username, password: password }] }).then((user) => {
+    User.findOne({ $or: [{ email: username, phone: username }] }).then((user) => {
         if (user) {
             if (user.password == password) {
                 const token = sign({ name: user.name }, "qwe1234", {
